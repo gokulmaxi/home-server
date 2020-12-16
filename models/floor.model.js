@@ -1,28 +1,26 @@
 const mongoose = require("mongoose");
 
-// const RoomScheme = mongoose.Schema({
-//   roomId: String,
-//   roomIcon: {
-//     Type: String,
-//     enum: ["kitchen", "bedroom", "bathroom", "hall", "room"],
-//   },
-//   roomStatus: Boolean,
-//   switchBoards: [{ type: mongoose.Schema.Types.ObjectId, ref: "switchBoard" }],
-// });
-// module.exports = mongoose.model("room", RoomScheme);
-// var FloorSchema = mongoose.Schema({
-//   floorId: String,
-//   rooms: [RoomScheme],
-// });
-// module.exports = mongoose.model("floor", FloorSchema);
 var FloorSchema = mongoose.Schema({
   floorId: String,
+  floorIndex: Number,
   rooms: [
     {
       roomId: String,
+      roomIndex: Number,
+      roomIcon: String,
+      roomStatus: String,
+
       switchBoards: [
-        { switchBoardId: String, switches: [
-            { switchId: String }] },
+        {
+          switchBoardId: String,
+          switches: [
+            {
+              switchId: String,
+              switchState: Boolean,
+              switchType:String
+            },
+          ],
+        },
       ],
     },
   ],
